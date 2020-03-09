@@ -2,11 +2,12 @@ names = ['Piotr', 'Anna', 'Michał', 'Paulina', 'Mateusz', 'Magda'];
 
 class Students {
     constructor(names) {
-        // ...
+        this.names = names;
     }
 
     startWith(letter){
-        return // names (array) which starts with the letter
+        // names (array) which starts with the letter
+        
     }
 
     sort() {
