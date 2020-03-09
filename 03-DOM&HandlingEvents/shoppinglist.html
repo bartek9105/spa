@@ -9,7 +9,7 @@
 <body>
     <h1>Shopping List</h1>
     <p>
-        New item: <input type="text" name="item">
+        New item: <input type="text" name="item" class="taskInput">
         <button type="button">Add</button>
     </p>
     <h3>List of items</h3>
@@ -20,8 +20,15 @@
     </ol>
 
     <script>
-    	// a JavaScript code here ...
+        const list = document.querySelector("ol")
+        const taskValue = document.querySelector(".taskInput").value
+        const addBtn = document.querySelector("button")
 
+        addBtn.addEventListener("click", addTask)
+
+        function addTask(){
+            list.innerHTML += `<li>${taskValue}</li>`
+        }
     </script>
 </body>
 

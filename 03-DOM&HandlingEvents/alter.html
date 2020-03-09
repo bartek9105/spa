@@ -20,7 +20,34 @@
 		and psychedelic music.</p>
 		
 		<script>
-			// a JavaScript code here ...
+			const songTitle = document.querySelector("h1")
+			songTitle.addEventListener("click", () => {
+				songTitle.textContent += " Part 2"
+			})
+
+			const bandName = document.querySelector("h3")
+			const bandDescription = document.getElementsByTagName("p")[1]
+			bandName.addEventListener("click", () => {
+				bandDescription.style.visibility = "visible"
+			})
+
+			bandDescription.addEventListener("click", () => {
+				bandDescription.innerHTML += "<img src='band.jpg'>"
+			})
+
+			const lyrics = document.getElementsByTagName("p")[0]
+			lyrics.addEventListener("click", () => {
+				lyrics.style.fontStyle="italic"
+			})
+
+			lyrics.addEventListener("copy", () => {
+				alert("Copyright")
+			})
+
+			const body = document.getElementsByTagName("body")[0]
+			body.addEventListener("dblclick", () => {
+				body.style.backgroundColor = "yellow"
+			})
 			
 		</script>
 	</body>
