@@ -13,17 +13,16 @@
 		</p>
 
 		<script>
-			function fetchData()
+			async function fetchData()
 			{
 				//fetch z lokalnego pliku wymaga uruchomienia lokalnego serwera, który można zainstalować poleceniem npm install http-server a następnie uruchomić poleceniem http-server
-				fetch('name.json')
-					.then(res => {
-						return res.json()
-					})
-					.then(data => {
-						personalData.innerHTML = data.name + ' ' + data.surname
-					})
-					.catch(err => console.log(err))
+				try {
+					let response = await fetch('name.json')
+					let data = await response.json()
+					personalData.textContent = `${data.name} ${data.surname}`
+				} catch (error) {
+					console.log(error)
+				}
 			}
 
 			const personalData = document.getElementById('personalData')

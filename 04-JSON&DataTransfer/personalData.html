@@ -17,12 +17,12 @@
             if(!list.hasChildNodes()){
                 try {
                     const response = await fetch('people.json')
-                    const res = await response.json()
-                    res.forEach(el => {
+                    const data = await response.json()
+                    data.forEach(el => {
                         list.innerHTML += `<li>${el.name} ${el.surname}, ${el.country} </li>`
                     })
-                } catch (err) {
-                    console.log(err)
+                } catch (error) {
+                    console.log(error)
                 }
                 //fetch z lokalnego pliku wymaga uruchomienia lokalnego serwera, który można zainstalować poleceniem npm install http-server a następnie uruchomić poleceniem http-server
             }else{

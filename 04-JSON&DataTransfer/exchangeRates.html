@@ -8,7 +8,7 @@
 </head>
 <body>
     <script>
-        const par = document.getElementById('rates')
+        const ratesText = document.getElementById('rates')
         let arr = []
         
         async function getExchangeRates(){
@@ -18,7 +18,7 @@
                 let data = res[0].rates
                 arr.push(data[1], data[7], data[10])
                 arr.forEach(el => {
-                    par.textContent += `${el.currency} ${el.mid} `
+                    ratesText.textContent += `${el.currency} ${el.mid} `
                 })
             } catch (err) {
                 console.log(err);
