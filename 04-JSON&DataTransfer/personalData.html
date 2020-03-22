@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="Display data" id="btn">
+    <ol id="personal-data"></ol>
+
+    <script>
+        const list = document.getElementById('personal-data')
+        const btn = document.getElementById('btn')
+        
+        async function displayData(){
+            if(!list.hasChildNodes()){
+                try {
+                    const response = await fetch('people.json')
+                    const res = await response.json()
+                    res.forEach(el => {
+                        list.innerHTML += `<li>${el.name} ${el.surname}, ${el.country} </li>`
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
+                //fetch z lokalnego pliku wymaga uruchomienia lokalnego serwera, który można zainstalować poleceniem npm install http-server a następnie uruchomić poleceniem http-server
+            }else{
+                console.log('Already fetched');
+            }
+        }
+        btn.addEventListener('click', displayData)
+    </script>
+</body>
+</html>

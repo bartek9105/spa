@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <p id="rates"></p>
+</head>
+<body>
+    <script>
+        const par = document.getElementById('rates')
+        let arr = []
+        
+        async function getExchangeRates(){
+            try {
+                let response = await fetch('http://api.nbp.pl/api/exchangerates/tables/A/')
+                let res = await response.json()
+                let data = res[0].rates
+                arr.push(data[1], data[7], data[10])
+                arr.forEach(el => {
+                    par.textContent += `${el.currency} ${el.mid} `
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        
+        getExchangeRates()
+    </script>
+</body>
+</html>

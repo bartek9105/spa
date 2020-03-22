@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <table id="table_id" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+                <th>Country</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        async function displayData(){
+            //fetch z lokalnego pliku wymaga uruchomienia lokalnego serwera, który można zainstalować poleceniem npm install http-server a następnie uruchomić poleceniem http-server
+            try {
+                const response = await fetch('people.json')
+                const res = await response.json()
+                return res
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+        $(document).ready(async function(){
+            $('#table_id').DataTable( {
+            data: await displayData(),
+            columns: [
+                { data: 'name' },
+                { data: 'surname' },
+                { data: 'age' },
+                { data: 'country' },
+                { data: 'email' }
+            ]
+            });
+        })
+    </script>
+</body>
+</html>

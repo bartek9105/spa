@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myChart">
+
+    </canvas>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        let dates = []
+        let prices = []
+        async function getGoldPrice(){
+            try {
+                const response = await fetch('http://api.nbp.pl/api/cenyzlota/last/10')
+                const data = await response.json()
+                data.forEach(el => {
+                    dates.push(el.data)
+                    prices.push(el.cena)
+            })
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+        async function chartDisplay(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: await dates,
+                    datasets: [{
+                        label: 'Last 10 gold price quotations',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: await prices
+                    }]
+                },
+            });
+        }
+
+        getGoldPrice()
+        chartDisplay()
+    </script>
+</body>
+</html>
