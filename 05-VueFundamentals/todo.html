@@ -7,7 +7,7 @@
   <div id="app">
     DO WYKONANIA
     <ol>
-      <li v-for="task in todo">
+      <li v-for="task in sortTasks">
         {{ task }}
       </li>
     </ul>
@@ -22,6 +22,11 @@
           'Pay cable bill',
           'Go shopping'
         ]
+      },
+      computed: {
+        sortTasks(){
+          return this.todo.sort()
+        }
       }
     });
   </script>

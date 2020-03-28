@@ -7,7 +7,7 @@
   <div id="app">
     RECEIPT
     <br>
-    -----------------
+    -------------------------
     <br>
     Product: {{ product.name }}
     <br>
@@ -17,11 +17,11 @@
     <br>
     Amount: {{ amountCalc() }} zł
     <br>
-    VAT Tax Rate: {{ product.VAT }} %
+    VAT Tax Rate: {{ product.VAT }}%
     <br>
-    =================
+    ===============
     <br>
-    Total: {{ amountTotal }} zł
+    Total: {{ amountTotal() }} zł
   </div>
 
   <script>
@@ -36,12 +36,10 @@
         }
       },
       methods: {
-        amountCalc: function(){
+        amountCalc(){
           return this.product.unitPrice * this.product.quantity
-        }
-      },
-      computed: {
-        amountTotal: function(){
+        },
+        amountTotal(){
           let total = this.amountCalc() * (this.product.VAT/100 + 1)
           return total.toFixed(2)
         }

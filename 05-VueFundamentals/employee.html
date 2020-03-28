@@ -6,11 +6,11 @@
 <body>
 
   <div id="app">
-    <span>EMPLOYEE RECORD</span>
+    <span style="font-weight: bold;">EMPLOYEE RECORD</span>
     <br>
     Name 1: {{ name1 }}
     <br>
-    <span v-if="name2 !== ''">Name2: {{ name2 }}</span>
+    <span v-if="name2 !== ''">Name 2: {{ name2 }}</span>
     <br>
     Surname: {{ surname }}
     <br>
@@ -27,10 +27,19 @@
         name1: 'Adam',
         name2: 'Jan',
         surname: 'Majewski',
-        foreigner: true,
+        foreigner: false,
         nationality: 'Polish',
         pesel: '92021708229',
         address: 'ul. Szeroka 3, Kraków',
+        /*
+        name1: 'John',
+        name2: '',
+        surname: 'Brown',
+        foreigner: true,
+        nationality: 'USA',
+        pesel: '92021708229',
+        address: 'Holland Drive 4, Chicago',
+        */
       }
     });
   </script>

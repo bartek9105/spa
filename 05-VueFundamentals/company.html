@@ -5,18 +5,22 @@
     <style>
       .cart{
         text-align: center;
+        border: 1px solid #000;
+        padding: 10px 0;
+        width: 50%;
+        margin: 0 auto;
       }
       #company-name{
         font-weight: bold;
+        text-transform: uppercase;
       }
-
     </style>
 </head>
 <body>
 
   <div id="app">
     <div class="cart">
-      <span id="company-name">{{ company.toUpperCase() }}</span>
+      <span id="company-name">{{ company }}</span>
       <br>
       {{ address }}
       <br>
