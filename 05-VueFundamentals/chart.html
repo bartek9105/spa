@@ -2,8 +2,14 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
+
+  <div id="app">
+    <canvas id="myChart" width="400" height="100"></canvas>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
@@ -30,6 +36,62 @@
             popularity: 7.37
           }
         ] 
+      },
+      methods: {
+        createChart() {
+          var ctx = document.getElementById('myChart').getContext('2d');
+          const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: this.getLanguages,
+              datasets: [{
+                  label: 'Popularity of programming languages',
+                  data: this.getLangPopularity,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+          });
+        }
+      },
+      mounted(){
+        this.createChart()
+      },
+      computed: {
+        getLanguages(){
+          let languages = []
+          this.films.forEach(film => languages.push(film.language))
+          return languages
+        },
+        getLangPopularity(){
+          let popularity = []
+          this.films.forEach(film => popularity.push(film.popularity))
+          return popularity
+        }
       }
     });
   </script>

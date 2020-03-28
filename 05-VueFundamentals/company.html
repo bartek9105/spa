@@ -2,8 +2,32 @@
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .cart{
+        text-align: center;
+      }
+      #company-name{
+        font-weight: bold;
+      }
+
+    </style>
 </head>
 <body>
+
+  <div id="app">
+    <div class="cart">
+      <span id="company-name">{{ company.toUpperCase() }}</span>
+      <br>
+      {{ address }}
+      <br>
+      {{ postcode }} {{ city }}
+      <br>
+      tel. {{ landline }}, {{ mobile }}
+      <br>
+      <a :href="web">{{ web }}</a>
+    </div>
+  </div>
+
   <script>
     var app = new Vue({
       el: '#app',
